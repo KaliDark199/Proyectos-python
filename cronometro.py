@@ -1,6 +1,7 @@
 import time
 import pygame
 from plyer import notification
+import sys
 
 
 pygame.init()
@@ -31,10 +32,12 @@ cronometro(tiempo, time_elegido)
 respuesta = str(input("poner si si desea que se detenga la música: "))
 
 if respuesta.lower() == "si":  
-    musica.stop()
+    # musica.stop()
+    sys.exit()
     print("música detenida")
 else: 
-    return "bien por ti"
+    print("bien por ti")
+    
 
 
 
