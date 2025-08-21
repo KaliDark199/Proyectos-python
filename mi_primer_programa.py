@@ -2,6 +2,7 @@ import tkinter as tk
 import os
 import threading
 import time   
+from plyer import notification
 
 
 #primero creamos la ventana
@@ -51,6 +52,8 @@ def reiniciar():
         f.write(contenido_inicial)
 
 def bloq_page():
+    controlador = False
+    
     while ejecutar:
             while page_web not in obtener_respuestas_aplicaciones():
                 with open (host_path, "r+") as f:
@@ -59,8 +62,10 @@ def bloq_page():
                     for page_web in obtener_respuestas_páginas_web():
                         if page_web not in content:
                             f.write( f"\n{redirect} {page_web}")
+                            return controlador
                         else:
-                            pass
+                            return controlador
+    
     reiniciar()
 
 #Aquía haremos el bloqueador de aplicaciones
@@ -70,13 +75,32 @@ def bloq_apps():
             os.system(f"taskkill /f /im {app}.exe >nul 2>&1")
         time.sleep(2)
 
+#En esta parte haremos la confirmación de que las dos primeras dos funciones se ejecutaron
+
+# en está parte está el momento en la cuál apareze la primera notificación  mi app
+def notificar_inicio():
+        notification.notify(
+            title = "Iniciación",
+            message = "Durante este tiempo no podrás usar las aplicaciones y páginas web eligidas",
+            )   
+
+def notificar_final():
+    notification.notify(
+        title = "Finalización"
+        message = "A terminado la cantidad de tiempo que elegiste para concentrarte, así que relajate toma aguita  y se feliz :)",
+    )
+
+
+
 #en esta parte realizaremos el cronometro:
 
 def cronometro(respuesta_tiempo):
     obtener_tiempo()
     global ejecutar
+    notificar_inicio()
     time.sleep(respuesta_tiempo * 60)
     ejecutar = False
+    notificar_final()
 
     
 
