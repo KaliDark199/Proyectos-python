@@ -52,8 +52,6 @@ def reiniciar():
         f.write(contenido_inicial)
 
 def bloq_page():
-    controlador = False
-    
     while ejecutar:
             while page_web not in obtener_respuestas_aplicaciones():
                 with open (host_path, "r+") as f:
@@ -86,7 +84,7 @@ def notificar_inicio():
 
 def notificar_final():
     notification.notify(
-        title = "Finalización"
+        title = "Finalización",
         message = "A terminado la cantidad de tiempo que elegiste para concentrarte, así que relajate toma aguita  y se feliz :)",
     )
 
