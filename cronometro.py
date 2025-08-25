@@ -8,7 +8,7 @@ pygame.init()
 pygame.mixer.init()
 musica = pygame.mixer.Sound("musica1.mp3")
 
-time_elegido = int(input("elige la cantidad de tiempo que deseas que tenga el cronometro: "))
+time_elegido = float(input("elige la cantidad de tiempo que deseas que tenga el cronometro: "))
 tiempo = time_elegido * 60
 
 def cronometro(tiempo, time_elegido):
@@ -33,7 +33,7 @@ respuesta = str(input("poner si si desea que se detenga la música: "))
 
 if respuesta.lower() == "si":  
     # musica.stop()
-    sys.exit()
+    sys.exit() #también se puede detener el programa por medio de exit() y quit()
     print("música detenida")
 else: 
     print("bien por ti")
