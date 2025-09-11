@@ -14,7 +14,7 @@ ejecutar = True
 
 pygame.init()
 pygame.mixer.init()
-music = pygame.mixer.music.load("musica deseada para este caso")
+music = pygame.mixer.music.load("música.mp3")
 
 def convertir_a_segundos(number, word):
     number = int(number)
@@ -114,6 +114,8 @@ for tareas, tiempo in tareas_tiempo.items():
                         title = f"vuelve a la tarea: {tareas}",
                         message = f"te queda {cantidad_de_intervalos- n+1} de intervalos de 20 minutos"
                      )
+                    music.play()
+                    music.fadeout(5000)
                 notification.notify(
                      title = "Felicidades",
                      message= f"felicidad solamente te faltan {cantidad_adicional} segundos para terminar la tarea",
